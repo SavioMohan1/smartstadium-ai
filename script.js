@@ -78,52 +78,61 @@ crowdBtns.forEach(btn => {
 
 /* ── Queue Estimator Logic ──────────────────────────── */
 const STALL_DATA = {
-  'main': {
-    name: 'Main Concession',
-    emoji: '🍔',
-    base: { low: 5, medium: 12, high: 22 },
-    tips: {
-      low:    'Great time to grab food! Main Concession is almost empty.',
-      medium: 'Try West Wing Grill — only 4 min wait right now.',
-      high:   'Long queue! Pre-order to seat saves ~18 minutes. Or try VIP Lounge.'
-    }
-  },
-  'east': {
-    name: 'East Wing Bar',
-    emoji: '🍺',
-    base: { low: 3, medium: 9, high: 17 },
-    tips: {
-      low:    'Perfect timing — East Wing Bar is wide open!',
-      medium: 'Moderate crowd. West Wing Grill is quicker right now — 4 min.',
-      high:   'Heavy traffic. Consider the VIP Lounge or pre-order delivery.'
-    }
-  },
-  'west': {
-    name: 'West Wing Grill',
-    emoji: '🥩',
-    base: { low: 4, medium: 7, high: 14 },
-    tips: {
-      low:    'West Wing Grill is nearly empty — best time to visit!',
-      medium: 'Shorter wait than Main Concession. Good choice right now!',
-      high:   'Crowded but still faster than Main. East Wing Bar at 8 min too.'
-    }
-  },
-  'vip': {
-    name: 'VIP Lounge',
-    emoji: '⭐',
-    base: { low: 2, medium: 5, high: 9 },
-    tips: {
-      low:    'VIP Lounge is practically empty. Enjoy premium service!',
-      medium: 'VIP Lounge has the shortest wait among all stalls.',
-      high:   'Even at peak hours, VIP Lounge beats all queues. Best choice!'
-    }
-  }
+  'main': { name: 'Main Concession', emoji: '🍔' },
+  'east': { name: 'East Wing Bar', emoji: '🍺' },
+  'west': { name: 'West Wing Grill', emoji: '🥩' },
+  'vip':  { name: 'VIP Lounge', emoji: '⭐' }
 };
 
-function getStatus(minutes) {
-  if (minutes <= 6) return { label: 'Short Wait', cls: 'green' };
-  if (minutes <= 14) return { label: 'Moderate Wait', cls: 'yellow' };
-  return { label: 'Long Wait', cls: 'red' };
+// ── Gemini AI Configuration ──────────────────────────
+// PASTE YOUR API KEY HERE
+const GEMINI_API_KEY = 'REPLACE_WITH_YOUR_GEMINI_API_KEY';
+
+async function getGeminiWaitTime(stall, crowd) {
+  const prompt = `You are the SmartStadium AI engine. Estimate the wait time for the ${stall} stall with a ${crowd} crowd.
+  Return ONLY a raw JSON object with these keys: 
+  {
+    "minutes": number,
+    "statusLabel": "Short Wait" | "Moderate Wait" | "Long Wait",
+    "statusClass": "green" | "yellow" | "red",
+    "tip": "one short clever stadium routing tip under 15 words"
+  }
+  Be realistic. Short is <7 min, Moderate is 7-15 min, Long is >15 min.`;
+
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.candidates[0].content.parts[0].text;
+    // Strip potential markdown code blocks
+    const cleanJson = text.replace(/```json|```/g, '').trim();
+    return JSON.parse(cleanJson);
+  } catch (err) {
+    console.error('Gemini API Error, falling back to local logic:', err);
+    return null;
+  }
+}
+
+function getLocalFallback(stallKey, crowd) {
+  const baseData = {
+    'main': { low: 5, medium: 12, high: 22 },
+    'east': { low: 3, medium: 9, high: 17 },
+    'west': { low: 4, medium: 7, high: 14 },
+    'vip':  { low: 2, medium: 5, high: 9 }
+  };
+  const baseTime = baseData[stallKey][crowd];
+  const variance = Math.floor(Math.random() * 5 - 2);
+  const waitTime = Math.max(1, baseTime + variance);
+
+  if (waitTime <= 7) return { minutes: waitTime, statusLabel: 'Short Wait', statusClass: 'green', tip: 'Great time! Grab your food now before the next play.' };
+  if (waitTime <= 15) return { minutes: waitTime, statusLabel: 'Moderate Wait', statusClass: 'yellow', tip: 'Try West Wing Grill — it usually has a 4 min shorter wait.' };
+  return { minutes: waitTime, statusLabel: 'Long Wait', statusClass: 'red', tip: 'Peak traffic! Pre-order to your seat via the app to save 18 mins.' };
 }
 
 function getBarColor(cls) {
@@ -135,60 +144,54 @@ function getBarWidth(minutes) {
   return Math.min((minutes / 25) * 100, 100);
 }
 
-document.getElementById('estimate-btn').addEventListener('click', () => {
+document.getElementById('estimate-btn').addEventListener('click', async () => {
   const stallKey = document.getElementById('stall-select').value;
   const crowd    = selectedCrowd;
 
-  if (!stallKey) {
-    shakeWidget('stall-select');
-    return;
-  }
-  if (!crowd) {
-    shakeWidget('crowd-group');
-    return;
-  }
+  if (!stallKey) { shakeWidget('stall-select'); return; }
+  if (!crowd) { shakeWidget('crowd-group'); return; }
 
-  const stall = STALL_DATA[stallKey];
-  const baseTime = stall.base[crowd];
-  // Add a small random variance (±2 min) for realism
-  const variance = (Math.random() * 4 - 2).toFixed(0);
-  const waitTime = Math.max(1, baseTime + parseInt(variance));
-  const status   = getStatus(waitTime);
-  const tip      = stall.tips[crowd];
-
-  // Animate button
   const btn = document.getElementById('estimate-btn');
-  btn.textContent = '⏳ Calculating...';
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span class="status-dot"></span> AI Thinking...';
   btn.disabled = true;
 
-  setTimeout(() => {
-    btn.innerHTML = '<span class="btn-icon">⚡</span> Estimate Wait Time';
-    btn.disabled = false;
+  // 1. Try Gemini
+  let result = await getGeminiWaitTime(STALL_DATA[stallKey].name, crowd);
+  
+  // 2. Fallback if Gemini fails or Key is missing
+  if (!result || GEMINI_API_KEY === 'REPLACE_WITH_YOUR_GEMINI_API_KEY') {
+    await new Promise(r => setTimeout(r, 800)); // Sim mimic
+    result = getLocalFallback(stallKey, crowd);
+  }
 
-    // Render result
-    const resultCard = document.getElementById('result-card');
-    document.getElementById('result-time-val').textContent = waitTime;
-    document.getElementById('result-stall-name').textContent = `${stall.emoji} ${stall.name}`;
-    document.getElementById('result-crowd').textContent = crowd.charAt(0).toUpperCase() + crowd.slice(1);
-    document.getElementById('result-tip').innerHTML = `💡 <strong>AI Tip:</strong> ${tip}`;
+  btn.innerHTML = originalText;
+  btn.disabled = false;
 
-    const badge = document.getElementById('result-badge');
-    badge.className = `status-badge ${status.cls}`;
-    badge.innerHTML = `<span class="status-dot"></span> ${status.label}`;
+  // Render
+  const resultCard = document.getElementById('result-card');
+  document.getElementById('result-time-val').textContent = result.minutes;
+  document.getElementById('result-stall-name').textContent = `${STALL_DATA[stallKey].emoji} ${STALL_DATA[stallKey].name}`;
+  document.getElementById('result-crowd').textContent = crowd.charAt(0).toUpperCase() + crowd.slice(1);
+  document.getElementById('result-tip').innerHTML = `💡 <strong>AI Tip:</strong> ${result.tip}`;
 
-    const fill = document.getElementById('wait-bar-fill');
-    fill.style.width = '0%';
-    fill.style.background = getBarColor(status.cls);
+  const badge = document.getElementById('result-badge');
+  badge.className = `status-badge ${result.statusClass}`;
+  badge.innerHTML = `<span class="status-dot"></span> ${result.statusLabel}`;
+
+  const fill = document.getElementById('wait-bar-fill');
+  fill.style.width = '0%';
+  fill.style.background = getBarColor(result.statusClass);
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        fill.style.width = getBarWidth(waitTime) + '%';
-      });
+      fill.style.width = getBarWidth(result.minutes) + '%';
     });
+  });
 
-    resultCard.classList.add('show');
-    resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 900);
+  resultCard.classList.add('show');
+  resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
+
 
 function shakeWidget(id) {
   const el = document.getElementById(id);
