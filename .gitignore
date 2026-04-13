@@ -1,0 +1,70 @@
+# SmartStadium AI — .gitignore
+# ================================
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment & secrets
+.env
+.env.local
+.env.production
+.env.*
+*.key
+secrets.json
+
+# Node (if added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn/
+dist/
+build/
+.next/
+
+# Firebase
+.firebase/
+firebase-debug.log
+.firebaserc
+
+# GCP
+.gcloudignore
+gcloud-key.json
+service-account*.json
+
+# Logs
+*.log
+logs/
+
+# Temp
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~
+
+# Python (local dev server related)
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+venv/
+env/

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SmartStadium AI — Transforming live sports events with AI-powered crowd routing, real-time queue management, AR wayfinding, and seamless fan experiences. Never wait in a line again." />
+  <title>SmartStadium AI — Never Miss a Moment. Never Wait in a Line.</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  NAVBAR                                             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container navbar-inner">
+      <a href="#" class="navbar-logo" aria-label="SmartStadium AI home">
+        <div class="logo-icon" aria-hidden="true">🏟️</div>
+        Smart<span>Stadium</span> AI
+      </a>
+      <ul class="navbar-links" role="list">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#tech">Tech</a></li>
+        <li><a href="#demo" class="navbar-cta">Try Demo</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  HERO                                               -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="hero" id="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge fade-in" role="status">
+          <span class="badge-dot" aria-hidden="true"></span>
+          AI-Powered Smart Venue · Hackathon 2026
+        </div>
+
+        <h1 id="hero-heading" class="hero-title fade-in fade-in-delay-1">
+          <span class="line-break">Never Miss a Moment.</span>
+          <span class="line-break accent">Never Wait in a Line.</span>
+        </h1>
+
+        <p class="hero-sub fade-in fade-in-delay-2">
+          SmartStadium AI uses real-time computer vision, predictive ML, and edge intelligence
+          to eliminate friction from the live sports experience — from parking to final whistle.
+        </p>
+
+        <div class="hero-actions fade-in fade-in-delay-3">
+          <a href="#demo" class="btn-primary" id="hero-cta" aria-label="See the Queue Estimator demo">
+            <span aria-hidden="true">⚡</span>
+            See It In Action
+          </a>
+          <a href="#features" class="btn-ghost" id="hero-features-link">
+            <span aria-hidden="true">✦</span>
+            Explore Features
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-mouse"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  PROBLEM SECTION                                    -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="section problem" id="problem" aria-labelledby="problem-heading">
+    <div class="container">
+      <div class="problem-header fade-in">
+        <span class="section-label">The Challenge</span>
+        <h2 id="problem-heading" class="section-title">The Problem With Live Events Today</h2>
+        <p class="section-sub">
+          Millions of fans attend live sports every year — but friction, delays, and poor navigation
+          are silently destroying the experience they paid hundreds for.
+        </p>
+      </div>
+
+      <div class="stat-grid" role="list">
+
+        <!-- Stat 1 -->
+        <article class="stat-card fade-in fade-in-delay-1" role="listitem">
+          <div class="stat-icon" aria-hidden="true">⏱️</div>
+          <div class="stat-number"
+               data-target="18"
+               data-suffix=" min"
+               aria-label="Average 18 minute wait at concessions">
+            0 min
+          </div>
+          <p class="stat-desc">Average wait time at concession stands during peak match hours</p>
+        </article>
+
+        <!-- Stat 2 -->
+        <article class="stat-card fade-in fade-in-delay-2" role="listitem">
+          <div class="stat-icon" aria-hidden="true">🚗</div>
+          <div class="stat-number"
+               data-target="43"
+               data-suffix="%"
+               aria-label="43 percent of fans leave early to beat traffic">
+            0%
+          </div>
+          <p class="stat-desc">Of fans leave before the final whistle to beat post-match traffic</p>
+        </article>
+
+        <!-- Stat 3 -->
+        <article class="stat-card fade-in fade-in-delay-3" role="listitem">
+          <div class="stat-icon" aria-hidden="true">🗺️</div>
+          <div class="stat-number"
+               data-target="67"
+               data-suffix="%"
+               aria-label="2 in 3 fans frustrated by in-venue navigation">
+            0%
+          </div>
+          <p class="stat-desc">2 in 3 fans frustrated by confusing in-venue navigation and wayfinding</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  LIVE DEMO SECTION                                  -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="section demo" id="demo" aria-labelledby="demo-heading">
+    <div class="container">
+
+      <div class="demo-header fade-in">
+        <span class="section-label">Interactive Demo</span>
+        <h2 id="demo-heading" class="section-title">Queue Estimator — Live Preview</h2>
+        <p class="section-sub">
+          Pick a food stall, set the crowd level, and let our AI predict your wait time
+          in real time — with smart routing tips to save you precious minutes.
+        </p>
+      </div>
+
+      <div class="demo-widget fade-in fade-in-delay-1" role="region" aria-label="Queue Estimator Widget">
+        <div class="demo-widget-header">
+          <div class="widget-icon" aria-hidden="true">🤖</div>
+          <div>
+            <h3>AI Queue Estimator</h3>
+            <p>Powered by SmartStadium's Predictive ML Engine</p>
+          </div>
+        </div>
+
+        <!-- Stall Selector -->
+        <div class="form-group">
+          <label for="stall-select">Select Food Stall</label>
+          <select class="form-select" id="stall-select" aria-required="true">
+            <option value="">— Choose a stall —</option>
+            <option value="main">🍔 Main Concession</option>
+            <option value="east">🍺 East Wing Bar</option>
+            <option value="west">🥩 West Wing Grill</option>
+            <option value="vip">⭐ VIP Lounge</option>
+          </select>
+        </div>
+
+        <!-- Crowd Level -->
+        <div class="form-group" id="crowd-group">
+          <label>Current Crowd Level</label>
+          <div class="crowd-selector" role="group" aria-label="Crowd level selector">
+            <button class="crowd-btn" data-level="low" id="crowd-low" aria-pressed="false">
+              🟢 Low
+            </button>
+            <button class="crowd-btn" data-level="medium" id="crowd-medium" aria-pressed="false">
+              🟡 Medium
+            </button>
+            <button class="crowd-btn" data-level="high" id="crowd-high" aria-pressed="false">
+              🔴 High
+            </button>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <button class="btn-estimate" id="estimate-btn" aria-live="polite">
+          <span class="btn-icon" aria-hidden="true">⚡</span>
+          Estimate Wait Time
+        </button>
+
+        <!-- Result Card -->
+        <div class="result-card" id="result-card" role="status" aria-live="polite" aria-atomic="true">
+          <div class="result-header">
+            <div>
+              <div class="result-stall"><strong id="result-stall-name"></strong> · <span id="result-crowd"></span> crowd</div>
+              <div style="display:flex;align-items:baseline;gap:6px;">
+                <div class="result-time">
+                  <span id="result-time-val">—</span>
+                  <span> min wait</span>
+                </div>
+              </div>
+            </div>
+            <span class="status-badge" id="result-badge">
+              <span class="status-dot"></span>&nbsp;
+            </span>
+          </div>
+
+          <div class="wait-bar" role="progressbar" aria-label="Queue length indicator">
+            <div class="wait-bar-fill" id="wait-bar-fill" style="width:0%"></div>
+          </div>
+
+          <div class="result-tip" id="result-tip" aria-label="AI routing tip"></div>
+        </div>
+
+      </div><!-- end demo-widget -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  FEATURES SECTION                                   -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="section features" id="features" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="features-header fade-in">
+        <span class="section-label">Core Capabilities</span>
+        <h2 id="features-heading" class="section-title">Everything the Smart Venue Needs</h2>
+        <p class="section-sub">
+          Six intelligent modules, one seamless fan experience — from the moment you arrive
+          to the post-match highlights reel.
+        </p>
+      </div>
+
+      <div class="features-grid" role="list">
+
+        <!-- Feature 1 -->
+        <article class="feature-card fade-in fade-in-delay-1" role="listitem">
+          <div class="feature-icon" aria-hidden="true">🧭</div>
+          <h3 class="feature-title">AI Crowd Routing</h3>
+          <p class="feature-desc">
+            Real-time crowd density maps powered by computer vision dynamically reroute
+            fans away from congestion hotspots inside and outside the venue.
+          </p>
+        </article>
+
+        <!-- Feature 2 -->
+        <article class="feature-card fade-in fade-in-delay-2" role="listitem">
+          <div class="feature-icon" aria-hidden="true">📱</div>
+          <h3 class="feature-title">Pre-Order to Seat</h3>
+          <p class="feature-desc">
+            Order food and beverages directly to your seat via the mobile app. AI predicts
+            optimal delivery windows based on match flow and player breaks.
+          </p>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="feature-card fade-in fade-in-delay-3" role="listitem">
+          <div class="feature-icon" aria-hidden="true">🥽</div>
+          <h3 class="feature-title">AR Wayfinding</h3>
+          <p class="feature-desc">
+            Point your phone and follow AR overlays to toilets, exits, your seat, or the
+            nearest concession — powered by BLE beacons and centimeter-accurate indoor GPS.
+          </p>
+        </article>
+
+        <!-- Feature 4 -->
+        <article class="feature-card fade-in fade-in-delay-4" role="listitem">
+          <div class="feature-icon" aria-hidden="true">📊</div>
+          <h3 class="feature-title">Live Queue View</h3>
+          <p class="feature-desc">
+            See real-time queue lengths at every stall on an interactive venue heatmap.
+            Get push alerts when your preferred stall drops below a 5-minute threshold.
+          </p>
+        </article>
+
+        <!-- Feature 5 -->
+        <article class="feature-card fade-in fade-in-delay-5" role="listitem">
+          <div class="feature-icon" aria-hidden="true">🚨</div>
+          <h3 class="feature-title">Emergency Exit Navigation</h3>
+          <p class="feature-desc">
+            In critical situations, SmartStadium AI instantly activates dynamic exit routing,
+            distributing evacuation load evenly and minimizing crowd crush risk.
+          </p>
+        </article>
+
+        <!-- Feature 6 -->
+        <article class="feature-card fade-in fade-in-delay-6" role="listitem">
+          <div class="feature-icon" aria-hidden="true">🎬</div>
+          <h3 class="feature-title">Post-Match Highlights</h3>
+          <p class="feature-desc">
+            AI-generated personalized highlight reels — based on your seat view and favorite
+            players — delivered to your phone within minutes of the final whistle.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  HOW IT WORKS                                       -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="section how-it-works" id="how-it-works" aria-labelledby="how-heading">
+    <div class="container">
+
+      <div class="how-header fade-in">
+        <span class="section-label">Simple By Design</span>
+        <h2 id="how-heading" class="section-title">How It Works</h2>
+        <p class="section-sub">
+          Three steps. Zero friction. Total control over your matchday experience.
+        </p>
+      </div>
+
+      <div class="steps-row" role="list">
+
+        <!-- Step 1 -->
+        <article class="step-card fade-in fade-in-delay-1" role="listitem">
+          <div class="step-number" aria-hidden="true">1</div>
+          <div class="step-icon" aria-hidden="true">💺</div>
+          <h3 class="step-title">Enter Your Seat</h3>
+          <p class="step-desc">
+            Open the app, scan your ticket QR or enter your seat number.
+            SmartStadium AI maps your exact location in the venue instantly.
+          </p>
+        </article>
+
+        <!-- Connector -->
+        <div class="step-connector" aria-hidden="true">
+          <div class="connector-line"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <article class="step-card fade-in fade-in-delay-2" role="listitem">
+          <div class="step-number" aria-hidden="true">2</div>
+          <div class="step-icon" aria-hidden="true">🗺️</div>
+          <h3 class="step-title">Get Your Plan</h3>
+          <p class="step-desc">
+            Receive a personalized gameday plan — optimal concession picks,
+            queue times, walking routes, and AI predictions for halftime demand.
+          </p>
+        </article>
+
+        <!-- Connector -->
+        <div class="step-connector" aria-hidden="true">
+          <div class="connector-line"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <article class="step-card fade-in fade-in-delay-3" role="listitem">
+          <div class="step-number" aria-hidden="true">3</div>
+          <div class="step-icon" aria-hidden="true">🎉</div>
+          <h3 class="step-title">Enjoy the Game</h3>
+          <p class="step-desc">
+            Never miss a goal because you were in a queue again. Live alerts,
+            AR navigation, and pre-order delivery keep you in your seat and in the moment.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  TECH STACK SECTION                                 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="section tech-stack" id="tech" aria-labelledby="tech-heading">
+    <div class="container">
+      <div class="tech-header fade-in">
+        <span class="section-label">Technology</span>
+        <h2 id="tech-heading" class="section-title">Built With Cutting-Edge Tech</h2>
+      </div>
+
+      <div class="tech-grid fade-in fade-in-delay-1" role="list">
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">👁️</span> Computer Vision
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">📡</span> BLE Beacons
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">⚡</span> Realtime AI
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">📱</span> Mobile App
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">☁️</span> Cloud APIs
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">🤖</span> Predictive ML
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">✨</span> Gemini AI
+        </div>
+        <div class="tech-badge" role="listitem">
+          <span class="tech-badge-icon" aria-hidden="true">🔷</span> Google Cloud
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  FOOTER                                             -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-logo">
+        <div class="logo-icon" aria-hidden="true">🏟️</div>
+        Smart<span>Stadium</span> AI
+      </div>
+
+      <p class="footer-tagline">AI-Powered Smart Venue & Fan Experience Platform</p>
+
+      <div class="footer-hackathon">
+        <span aria-hidden="true">🏆</span>
+        Hackathon 2026 — Smart Sports & Venues Track
+      </div>
+
+      <br/>
+      <a
+        href="https://github.com/your-username/smartstadium-ai"
+        class="footer-github"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="github-link"
+        aria-label="View SmartStadium AI on GitHub (opens in new tab)"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub
+      </a>
+
+      <div class="footer-divider"></div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#problem">Problem</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#tech">Tech Stack</a>
+      </nav>
+
+      <p class="footer-copy">
+        &copy; 2026 SmartStadium AI · Built for the hackathon · Powered by Gemini &amp; Google Cloud
+      </p>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

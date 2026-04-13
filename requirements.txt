@@ -1,0 +1,56 @@
+# SmartStadium AI — Requirements & Dependencies
+# ================================================
+# This is a zero-dependency frontend project.
+# No npm packages or pip packages are required to run the application.
+# The following documents the external services and tools used.
+
+# ── RUNTIME (Browser) ───────────────────────────────
+# Pure HTML5 + CSS3 + Vanilla JavaScript
+# No build step required
+# Compatible with: Chrome 90+, Firefox 88+, Edge 90+, Safari 14+
+
+# ── FONTS (CDN — loaded in index.html) ──────────────
+# Google Fonts — Inter (weights: 300, 400, 500, 600, 700, 800, 900)
+# URL: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap
+
+# ── PLANNED AI INTEGRATION ──────────────────────────
+# Google Generative AI (Gemini 1.5 Flash)
+# API: https://generativelanguage.googleapis.com/v1beta/
+# Key: Set as environment variable GEMINI_API_KEY
+# Model: gemini-1.5-flash (fast, low latency, ideal for real-time estimates)
+
+# ── DEPLOYMENT TOOLS ────────────────────────────────
+# Firebase CLI (for Firebase Hosting deployment)
+# Install: npm install -g firebase-tools
+# Version: latest
+
+# Google Cloud SDK (for GCP deployment)
+# Install: https://cloud.google.com/sdk/docs/install
+# Version: latest
+
+# Python (optional — for local dev server only)
+# Version: 3.8+
+# Usage: python -m http.server 8000
+
+# Node.js (optional — for npx serve)
+# Version: 18+
+# Usage: npx serve .
+
+# ── DEVELOPMENT ENVIRONMENT ─────────────────────────
+# OS: Windows 10/11 (also works on macOS/Linux)
+# Editor: VS Code (recommended)
+# Extensions: Live Server, Prettier, GitHub Copilot
+
+# ── GCP SERVICES USED ───────────────────────────────
+# Firebase Hosting         — Static file CDN delivery
+# Cloud Run                — Optional containerized deployment
+# Cloud Storage            — File hosting bucket
+# Vertex AI / Gemini API   — AI queue prediction (planned)
+# Cloud Firestore          — Real-time queue data store (planned)
+
+# ── BROWSER APIS USED ───────────────────────────────
+# IntersectionObserver     — Scroll-triggered animations
+# requestAnimationFrame    — Smooth counter animations
+# CSS Custom Properties    — Design system tokens
+# CSS Grid + Flexbox       — Responsive layout
+# scrollIntoView           — Smooth scroll behavior
